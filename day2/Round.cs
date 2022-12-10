@@ -1,14 +1,11 @@
 namespace day2;
 
-class Round
+internal class Round
 {
     public static readonly Dictionary<EHandType, int> HandToPoints = new()
     {
-        { EHandType.Rock, 1 }, { EHandType.Paper, 2 }, { EHandType.Scissors, 3 },
+        { EHandType.Rock, 1 }, { EHandType.Paper, 2 }, { EHandType.Scissors, 3 }
     };
-    
-    public EHandType Hand1 { get; private set; }
-    public EHandType Hand2 { get; private set; }
 
     public Round(EHandType hand1, EHandType hand2)
     {
@@ -16,23 +13,25 @@ class Round
         Hand2 = hand2;
     }
 
+    public EHandType Hand1 { get; }
+    public EHandType Hand2 { get; }
+
     public int Score()
     {
         var score = 0;
 
-        if (this.Hand1 == this.Hand2)
-        {
+        if (Hand1 == Hand2)
             score += 3;
-        }
-        else switch (this.Hand2)
-        {
-            case EHandType.Rock when this.Hand1 == EHandType.Scissors:
-            case EHandType.Scissors when this.Hand1 == EHandType.Paper:
-            case EHandType.Paper when this.Hand1 == EHandType.Rock:
-                score += 6;
-                break;
-        }
+        else
+            switch (Hand2)
+            {
+                case EHandType.Rock when Hand1 == EHandType.Scissors:
+                case EHandType.Scissors when Hand1 == EHandType.Paper:
+                case EHandType.Paper when Hand1 == EHandType.Rock:
+                    score += 6;
+                    break;
+            }
 
-        return score + HandToPoints[this.Hand2];
+        return score + HandToPoints[Hand2];
     }
 }

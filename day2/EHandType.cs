@@ -1,9 +1,8 @@
 namespace day2;
 
-
 public enum EHandType
 {
-    Rock , 
+    Rock,
     Paper,
     Scissors
 }

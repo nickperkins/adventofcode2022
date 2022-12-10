@@ -1,10 +1,9 @@
-﻿namespace day1;
-
-using System.Globalization;
-using System.Reflection;
+﻿using System.Globalization;
 using System.Resources;
 
-static class Program
+namespace day1;
+
+internal static class Program
 {
     private static void Main(string[] args)
     {
@@ -35,6 +34,7 @@ static class Program
         // Part 2
         calorieCount.Sort();
         calorieCount.Reverse();
-        Console.WriteLine(rm.GetString("Part", culture) + " 2: {0}", calorieCount.Take(3).Aggregate(0, (acc, x) => acc + x));
+        Console.WriteLine(rm.GetString("Part", culture) + " 2: {0}",
+            calorieCount.Take(3).Aggregate(0, (acc, x) => acc + x));
     }
 }

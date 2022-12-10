@@ -4,15 +4,12 @@ public static class Strategy
 {
     public static readonly Dictionary<char, EResult> InputToResult = new()
     {
-        { 'X', EResult.Lose }, { 'Y', EResult.Draw }, { 'Z', EResult.Win },
+        { 'X', EResult.Lose }, { 'Y', EResult.Draw }, { 'Z', EResult.Win }
     };
 
     public static EHandType CorrectHand(EHandType hand, EResult result)
     {
-        if (result == EResult.Draw)
-        {
-            return hand;
-        }
+        if (result == EResult.Draw) return hand;
 
         switch (hand)
         {
@@ -26,5 +23,4 @@ public static class Strategy
                 throw new ArgumentOutOfRangeException(nameof(hand), hand, null);
         }
     }
-    
 }

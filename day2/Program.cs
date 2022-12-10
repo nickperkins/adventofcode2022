@@ -1,9 +1,9 @@
-﻿namespace day2;
-
-using System.Globalization;
+﻿using System.Globalization;
 using System.Resources;
 
-static class Program
+namespace day2;
+
+internal static class Program
 {
     private static void Main(string[] args)
     {
@@ -22,9 +22,7 @@ static class Program
 
         var score = rounds.Sum(round => round.Score());
 
-        
+
         Console.WriteLine(day2.Program_Main_The_score_for_this_set_is___0_, score);
     }
-
-    
 }
