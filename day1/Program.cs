@@ -1,25 +1,40 @@
-﻿List<int> calorieCount = new List<int>();
+﻿namespace day1;
 
-// Read in the data file line by line
-int temp = 0;
-foreach (string line in System.IO.File.ReadLines(Path.Combine(AppContext.BaseDirectory, "input.txt")))
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
+
+static class Program
 {
-    int? lineValue = int.TryParse(line, out int tmp) ? (int?)tmp : null;
-    if (lineValue != null)
+    private static void Main(string[] args)
     {
-        temp += lineValue ?? default(int);
-    }
-    else
-    {
-        calorieCount.Add(temp);
-        temp = 0;
+        var rm = new ResourceManager("day1.AOCResources", typeof(Program).Assembly);
+        var culture = new CultureInfo("en-AU");
+
+        var calorieCount = new List<int>();
+
+        // Read in the data file line by line
+        var temp = 0;
+        foreach (var line in File.ReadLines(Path.Combine(AppContext.BaseDirectory, "input.txt")))
+        {
+            var lineValue = int.TryParse(line, out var tmp) ? (int?)tmp : null;
+            if (lineValue != null)
+            {
+                temp += (int)lineValue;
+            }
+            else
+            {
+                calorieCount.Add(temp);
+                temp = 0;
+            }
+        }
+
+        // Part 1
+        Console.WriteLine(rm.GetString("Part", culture) + " 1: {0}", calorieCount.Max());
+
+        // Part 2
+        calorieCount.Sort();
+        calorieCount.Reverse();
+        Console.WriteLine(rm.GetString("Part", culture) + " 2: {0}", calorieCount.Take(3).Aggregate(0, (acc, x) => acc + x));
     }
 }
-
-// Part 1
-Console.WriteLine("Part 1: {0}", calorieCount.Max());
-
-// Part 2
-calorieCount.Sort();
-calorieCount.Reverse();
-Console.WriteLine("Part 2: {0}", calorieCount.Take(3).Aggregate(0, (acc, x) => acc + x));

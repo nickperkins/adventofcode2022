@@ -13,13 +13,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="../AOCResources.resources" />
+    <EmbeddedResource Update="day2.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>day2.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="day2.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>day2.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>
