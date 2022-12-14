@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.Design;
 using System.Data.Common;
 using System.Net.Http.Headers;
 
@@ -8,9 +9,9 @@ internal static class Program
 {
     private static void Main(string[] args)
     {
-        Priority p = Priority.GetInstance();
+        var p = Priority.Instance;
 
-        var sacks = new List<Rucksack>();
+        var sacks = new Collection<Rucksack>();
 
         foreach (var line in File.ReadLines(Path.Combine(AppContext.BaseDirectory, "input.txt")))
         {
@@ -19,7 +20,7 @@ internal static class Program
 
         Console.WriteLine(sacks.Sum(c => p.GetPriority(c.DuplicateItems())));
 
-        var groups = new List<Group>();
+        var groups = new Collection<Group>();
 
         var groupedSacks = sacks.Select((elem, index) => new { elem, index }).GroupBy(x => x.index / 3);
 

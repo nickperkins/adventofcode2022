@@ -12,10 +12,14 @@ public sealed class Priority
 
     private static Priority? _instance;
 
-    public static Priority GetInstance()
+    public static Priority Instance
     {
-        if (_instance != null) return _instance;
-        return _instance ??= new Priority();
+        get
+        {
+            if (_instance != null) return _instance;
+            _instance = new Priority();
+            return _instance;
+        }
     }
 
     public int GetPriority(char item)
